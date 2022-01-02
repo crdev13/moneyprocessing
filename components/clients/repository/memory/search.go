@@ -12,3 +12,12 @@ func (repository *ClientsRepository) FindClientByID(clientID uint32) (*entity.Cl
 	client := clientToConvert.ConvertClientRowResultToEntity()
 	return client, nil
 }
+
+func (repository *ClientsRepository) FindAccountByID(accountID uint32) (*entity.Account, error) {
+	accountToConvert, ok := repository.Accounts[accountID]
+	if !ok {
+		return nil, nil
+	}
+	account := accountToConvert.ConvertAccountRowResultToEntity()
+	return account, nil
+}

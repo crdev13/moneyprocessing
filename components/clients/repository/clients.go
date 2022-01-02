@@ -12,6 +12,7 @@ type ClientsRepository interface {
 	CreateClient(request *input.CreateClient) error
 	FindClientByID(clientID uint32) (*entity.Client, error)
 	CreateAccount(request *input.CreateAccount) error
+	FindAccountByID(accountID uint32) (*entity.Account, error)
 }
 
 func NewInMemoryClientsRepository() ClientsRepository {
