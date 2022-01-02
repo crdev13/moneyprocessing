@@ -6,6 +6,7 @@ var acc1 = &data.Account{
 	ID:       1,
 	ClientID: 1,
 	Currency: "USD",
+	Amount:   0,
 }
 var client1 = &data.Client{
 	ID:   1,
@@ -19,11 +20,13 @@ var acc2 = &data.Account{
 	ID:       2,
 	ClientID: 2,
 	Currency: "USD",
+	Amount:   100,
 }
 var acc3 = &data.Account{
 	ID:       3,
 	ClientID: 2,
 	Currency: "COP",
+	Amount:   100,
 }
 var client2 = &data.Client{
 	ID:   2,
@@ -38,16 +41,19 @@ var acc4 = &data.Account{
 	ID:       4,
 	ClientID: 3,
 	Currency: "USD",
+	Amount:   10,
 }
 var acc5 = &data.Account{
 	ID:       5,
 	ClientID: 3,
 	Currency: "COP",
+	Amount:   100,
 }
 var acc6 = &data.Account{
 	ID:       6,
 	ClientID: 3,
 	Currency: "MXN",
+	Amount:   0,
 }
 var client3 = &data.Client{
 	ID:   3,

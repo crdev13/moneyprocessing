@@ -14,6 +14,7 @@ func (repository *ClientsRepository) CreateAccount(request *input.CreateAccount)
 		ID:       accID,
 		ClientID: request.ClientID,
 		Currency: request.Currency,
+		Amount:   0,
 	}
 	client, ok := repository.Clients[request.ClientID]
 	if !ok {

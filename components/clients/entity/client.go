@@ -12,6 +12,7 @@ type Account struct {
 	ID       uint32
 	ClientID uint32
 	Currency string
+	Amount   float32
 }
 
 func (data *Client) CanPerformAction() error {

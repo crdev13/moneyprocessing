@@ -12,6 +12,7 @@ type Account struct {
 	ID       uint32
 	ClientID uint32
 	Currency string
+	Amount   float32
 }
 
 func (data *Account) ConvertAccountRowResultToEntity() *entity.Account {
@@ -22,6 +23,7 @@ func (data *Account) ConvertAccountRowResultToEntity() *entity.Account {
 		ID:       data.ID,
 		ClientID: data.ClientID,
 		Currency: data.Currency,
+		Amount:   data.Amount,
 	}
 
 	return account
