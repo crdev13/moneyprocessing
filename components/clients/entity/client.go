@@ -21,3 +21,10 @@ func (data *Client) CanPerformAction() error {
 	}
 	return nil
 }
+
+func (data *Account) CanPerformAction() error {
+	if data == nil {
+		return fmt.Errorf("Error, account cannot perform action")
+	}
+	return nil
+}
