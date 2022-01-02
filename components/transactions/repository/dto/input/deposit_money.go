@@ -5,20 +5,18 @@ import (
 )
 
 type Deposit struct {
-	Amount      float32
-	Transaction *Transaction
+	Reciever *uint32
+	Type     string
+	Amount   float32
 }
 
 func MakeDepositInputFromRequest(
 	request *inputrequest.DepositRequest,
 ) *Deposit {
 	deposit := &Deposit{
-		Amount: request.Amount,
-		Transaction: &Transaction{
-			Reciever: &request.AccountID,
-			Type:     "DEPOSIT",
-			Amount:   request.Amount,
-		},
+		Reciever: &request.AccountID,
+		Type:     "DEPOSIT",
+		Amount:   request.Amount,
 	}
 	return deposit
 }

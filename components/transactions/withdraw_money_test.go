@@ -9,18 +9,18 @@ import (
 	transactionsrepository "github.com/crdev13/moneyprocessing/components/transactions/repository"
 )
 
-func TestDepositMoney(t *testing.T) {
+func TestWithdrawMoney(t *testing.T) {
 	clientsRepository := clientsrepository.NewInMemoryClientsRepository()
 	transactionsRepository := transactionsrepository.NewInMemoryTransactionsRepository()
 	hasErr := false
-	for number, testCase := range input.DepositMoneyTestCases {
-		command, err := NewDepositMoney(clientsRepository, transactionsRepository, testCase.Request)
+	for number, testCase := range input.WithdrawMoneyTestCases {
+		command, err := NewWithdrawMoney(clientsRepository, transactionsRepository, testCase.Request)
 		if (err != nil && !testCase.NeedError) || err == nil && testCase.NeedError {
 			hasErr = true
 		}
 		if err != nil {
 			fmt.Printf("Case #%v:\n", (number + 1))
-			hasErr = printDepositMoneyTestDetails(testCase, err)
+			hasErr = printWithdrawMoneyTestDetails(testCase, err)
 			fmt.Printf("Case #%v(end)\n", (number + 1))
 		} else {
 			hasErr = false
@@ -29,19 +29,19 @@ func TestDepositMoney(t *testing.T) {
 				hasErr = true
 			}
 			fmt.Printf("Case #%v:\n", (number + 1))
-			hasErr = printDepositMoneyTestDetails(testCase, err)
+			hasErr = printWithdrawMoneyTestDetails(testCase, err)
 			fmt.Printf("Case #%v(end)\n", (number + 1))
 		}
 	}
 	if hasErr {
-		t.Errorf("TestDepositMoney HAS NOT PASSED TESTS ")
+		t.Errorf("TestWithdrawMoney HAS NOT PASSED TESTS ")
 		return
 	}
-	fmt.Printf("TestDepositMoney HAS PASSED TESTS ")
+	fmt.Printf("TestWithdrawMoney HAS PASSED TESTS ")
 }
 
-func printDepositMoneyTestDetails(
-	testCase *input.DepositMoneyTestCase,
+func printWithdrawMoneyTestDetails(
+	testCase *input.WithdrawMoneyTestCase,
 	err error,
 ) bool {
 	hasErr := true

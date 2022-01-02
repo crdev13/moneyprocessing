@@ -33,7 +33,7 @@ var DepositMoneyTestCases = []*DepositMoneyTestCase{
 		MsgError:  "Error, invalid amount",
 	},
 	{
-		Name: "NotDepositWithInvalidAmount",
+		Name: "NotDepositWithInvalidAccount",
 		Request: &DepositRequest{
 			AccountID: 99,
 			Amount:    10,

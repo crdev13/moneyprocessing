@@ -6,19 +6,19 @@ import (
 	"github.com/crdev13/moneyprocessing/components/transactions/repository/dto/input"
 )
 
-func (repository *TransactionsRepository) DepositMoney(request *input.Deposit) error {
+func (repository *TransactionsRepository) WithdrawMoney(request *input.Withdraw) error {
 	repository.nextSequenceTransactionID()
 	txID := repository.TransactionsSequenceID
 	tx := &data.Transaction{
-		ID:         txID,
-		ReceiverID: request.Reciever,
-		Type:       request.Type,
-		Amount:     request.Amount,
+		ID:       txID,
+		SenderID: request.Sender,
+		Type:     request.Type,
+		Amount:   request.Amount,
 	}
 	repository.Transactions[txID] = tx
-	account, ok := clientsrepository.Accounts[*request.Reciever]
+	account, ok := clientsrepository.Accounts[*request.Sender]
 	if ok {
-		account.Amount += request.Amount
+		account.Amount -= request.Amount
 	}
 	return nil
 }

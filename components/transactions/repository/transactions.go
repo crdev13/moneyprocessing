@@ -9,6 +9,7 @@ type TransactionsRepository interface {
 	Close()
 	HasConnection() bool
 	DepositMoney(request *input.Deposit) error
+	WithdrawMoney(request *input.Withdraw) error
 }
 
 func NewInMemoryTransactionsRepository() TransactionsRepository {
