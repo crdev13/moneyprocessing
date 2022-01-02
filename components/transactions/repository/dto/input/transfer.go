@@ -10,13 +10,13 @@ type Transfer struct {
 }
 
 func MakeTransferInputFromRequest(
-	request *inputrequest.DepositRequest,
+	request *inputrequest.TransferRequest,
 ) *Transfer {
 	transfer := &Transfer{
-		// Sender:   &request.SenderID,
-		// Reciever: &request.RecieverID,
-		Type:   "TRANSFER",
-		Amount: request.Amount,
+		Sender:   &request.SenderID,
+		Reciever: &request.RecieverID,
+		Type:     "TRANSFER",
+		Amount:   request.Amount,
 	}
 	return transfer
 }

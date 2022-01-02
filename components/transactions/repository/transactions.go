@@ -10,6 +10,7 @@ type TransactionsRepository interface {
 	HasConnection() bool
 	DepositMoney(request *input.Deposit) error
 	WithdrawMoney(request *input.Withdraw) error
+	TransferMoney(request *input.Transfer) error
 }
 
 func NewInMemoryTransactionsRepository() TransactionsRepository {

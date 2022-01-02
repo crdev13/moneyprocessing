@@ -7,3 +7,7 @@ type Deposit interface {
 type Withdraw interface {
 	Execute() error
 }
+
+type Transfer interface {
+	Execute() error
+}
