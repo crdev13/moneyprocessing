@@ -3,10 +3,11 @@ package output
 import "github.com/crdev13/moneyprocessing/components/clients/entity"
 
 type Account struct {
-	ID       uint32  `json:"id"`
-	Client   *string `json:"client,omitempty"`
-	Currency string  `json:"currency"`
-	Amount   float32 `json:"amount"`
+	ID           uint32      `json:"id"`
+	Client       *string     `json:"client,omitempty"`
+	Currency     string      `json:"currency"`
+	Amount       float32     `json:"amount"`
+	Transactions interface{} `json:"transactions,omitempty"`
 }
 
 func MakeAccountOutputFromEntity(data *entity.Account, client *string) *Account {

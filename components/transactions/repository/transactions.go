@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"github.com/crdev13/moneyprocessing/components/transactions/entity"
 	"github.com/crdev13/moneyprocessing/components/transactions/repository/dto/input"
 	"github.com/crdev13/moneyprocessing/components/transactions/repository/memory"
 )
@@ -11,6 +12,7 @@ type TransactionsRepository interface {
 	DepositMoney(request *input.Deposit) error
 	WithdrawMoney(request *input.Withdraw) error
 	TransferMoney(request *input.Transfer) error
+	GetTransactionsByAccount(accountID uint32) ([]*entity.Transaction, error)
 }
 
 func NewInMemoryTransactionsRepository() TransactionsRepository {
