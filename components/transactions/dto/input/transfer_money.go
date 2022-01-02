@@ -1,6 +1,10 @@
 package input
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
 
 type TransferRequest struct {
 	SenderID   uint32  `json:"sender_id"`
@@ -25,4 +29,14 @@ func (data *TransferRequest) Validate() error {
 		return fmt.Errorf("Error, invalid amount")
 	}
 	return nil
+}
+
+func MakeTransferRequest(r *http.Request) (*TransferRequest, error) {
+	decoder := json.NewDecoder(r.Body)
+	var requestForm TransferRequest
+	if err := decoder.Decode(&requestForm); err != nil {
+		return nil, err
+	}
+	defer r.Body.Close()
+	return &requestForm, nil
 }

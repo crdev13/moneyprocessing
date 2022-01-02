@@ -1,6 +1,10 @@
 package input
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
 
 type WithdrawRequest struct {
 	AccountID uint32  `json:"account_id"`
@@ -18,4 +22,14 @@ func (data *WithdrawRequest) Validate() error {
 		return fmt.Errorf("Error, invalid amount")
 	}
 	return nil
+}
+
+func MakeWithdrawRequest(r *http.Request) (*WithdrawRequest, error) {
+	decoder := json.NewDecoder(r.Body)
+	var requestForm WithdrawRequest
+	if err := decoder.Decode(&requestForm); err != nil {
+		return nil, err
+	}
+	defer r.Body.Close()
+	return &requestForm, nil
 }
