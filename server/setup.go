@@ -40,7 +40,7 @@ func (a *App) loadHandlers(router *mux.Router) {
 	router.HandleFunc("/api/clients", a.createClient).Methods(http.MethodPost)
 	router.HandleFunc("/api/clients/id/{CLIENTID:[1-9][0-9]{0,8}}", a.getClient).Methods(http.MethodGet)
 	router.HandleFunc("/api/accounts", a.createAccount).Methods(http.MethodPost)
-	router.HandleFunc("/api/accounts/id/{ACCOUNTID:[1-9][0-9]{0,8}}", a.getClient).Methods(http.MethodGet)
+	router.HandleFunc("/api/accounts/id/{ACCOUNTID:[1-9][0-9]{0,8}}", a.getAccount).Methods(http.MethodGet)
 	router.HandleFunc("/api/transactions/id/{ACCOUNTID:[1-9][0-9]{0,8}}", a.getTransactions).Methods(http.MethodGet)
 	router.HandleFunc("/api/transactions/deposit", a.deposit).Methods(http.MethodPost)
 	router.HandleFunc("/api/transactions/withdraw", a.withdraw).Methods(http.MethodPost)
