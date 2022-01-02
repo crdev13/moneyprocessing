@@ -1,0 +1,22 @@
+@domain = http://localhost:8080
+
+@domain = http://localhost:8080
+
+### Create client
+POST {{domain}}/api/clients HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Test Test",
+    "accounts": [
+        {
+            "currency": "USD"
+        }
+    ]
+}
+
+### Get client
+GET {{domain}}/api/clients/id/5
+
+### Get client
+GET {{domain}}/api/clients/id/1

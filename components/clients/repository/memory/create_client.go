@@ -14,10 +14,11 @@ func (repository *ClientsRepository) CreateClient(request *input.CreateClient) e
 	}
 	repository.Clients[clientID] = client
 	request.SetClientID(clientID)
-	if len(repository.Accounts) == 0 {
+	if len(request.Accounts) == 0 {
 		return nil
 	}
-	for _, acc := range repository.Accounts {
+	accounts := []*data.Account{}
+	for _, acc := range request.Accounts {
 		repository.nextSequenceAccountID()
 		accID := repository.AccountsSequenceID
 		account := &data.Account{
@@ -25,7 +26,9 @@ func (repository *ClientsRepository) CreateClient(request *input.CreateClient) e
 			ClientID: acc.ClientID,
 			Currency: acc.Currency,
 		}
+		accounts = append(accounts, account)
 		repository.Accounts[accID] = account
 	}
+	client.Accounts = accounts
 	return nil
 }
