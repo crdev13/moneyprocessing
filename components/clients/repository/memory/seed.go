@@ -59,10 +59,16 @@ var client3 = &data.Client{
 	},
 }
 
+var client4 = &data.Client{
+	ID:   4,
+	Name: "Rodrigo Carlos",
+}
+
 var Clients = map[uint32]*data.Client{
 	client1.ID: client1,
 	client2.ID: client2,
 	client3.ID: client3,
+	client4.ID: client4,
 }
 
 var Accounts = map[uint32]*data.Account{

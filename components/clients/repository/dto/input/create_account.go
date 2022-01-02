@@ -5,8 +5,13 @@ import (
 )
 
 type CreateAccount struct {
-	ClientID uint32
-	Currency string
+	ClientID  uint32
+	AccountID uint32
+	Currency  string
+}
+
+func (data *CreateAccount) SetAccountID(accountID uint32) {
+	data.AccountID = accountID
 }
 
 func MakeCreateAccountInputFromRequest(

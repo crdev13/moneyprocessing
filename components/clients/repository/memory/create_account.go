@@ -25,5 +25,6 @@ func (repository *ClientsRepository) CreateAccount(request *input.CreateAccount)
 	}
 	client.Accounts = accounts
 	repository.Accounts[accID] = account
+	request.SetAccountID(accID)
 	return nil
 }

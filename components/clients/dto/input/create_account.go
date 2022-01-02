@@ -11,7 +11,7 @@ type CreateAccountRequest struct {
 	Account  *Account `json:"account,omitempty"`
 }
 
-func (data *CreateAccountRequest) validate() error {
+func (data *CreateAccountRequest) Validate() error {
 	if data == nil {
 		return fmt.Errorf("Error, no input data")
 	}
