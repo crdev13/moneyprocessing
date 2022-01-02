@@ -1,6 +1,9 @@
 package repository
 
 import (
+	"database/sql"
+	"fmt"
+
 	"github.com/crdev13/moneyprocessing/components/clients/entity"
 	"github.com/crdev13/moneyprocessing/components/clients/repository/dto/input"
 	"github.com/crdev13/moneyprocessing/components/clients/repository/memory"
@@ -24,9 +27,9 @@ func NewInMemoryClientsRepository() ClientsRepository {
 	return clientsRepository
 }
 
-// func NewInPostgreSQLClientsRepository(dbConn *sql.DB) (ClientsRepository, error) {
-// 	if dbConn == nil {
-// 		return nil, fmt.Errorf("Error, no database connection")
-// 	}
-// 	return &posgrerepository.ProductsRepository{DB: dbConn}, nil
-// }
+func NewInPostgreSQLClientsRepository(dbConn *sql.DB) (ClientsRepository, error) {
+	if dbConn == nil {
+		return nil, fmt.Errorf("Error, no database connection")
+	}
+	return &posgres.ClientsRepository{DB: dbConn}, nil
+}
