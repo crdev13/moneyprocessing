@@ -1,10 +1,13 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+
+	_ "github.com/lib/pq"
 
 	clientsrepository "github.com/crdev13/moneyprocessing/components/clients/repository"
 	transactionsrepository "github.com/crdev13/moneyprocessing/components/transactions/repository"
@@ -13,10 +16,21 @@ import (
 	"github.com/crdev13/moneyprocessing/server"
 )
 
+func newPostgreSQLDatabaseConnection(url string) (*sql.DB, error) {
+	db, err := sql.Open("postgres", url)
+	if err != nil {
+		return nil, err
+	}
+	err = db.Ping()
+	if err != nil {
+		return nil, err
+	}
+	return db, nil
+}
+
 func main() {
-	dbConn, err := NewPosgreSQLDatabaseConnection(
-		"postgres://root:mypass@localhost:5432/moneyprocessing?sslmode=disable",
-	)
+	fmt.Println("before NewPostgreSQLDatabaseConnection")
+	dbConn, err := newPostgreSQLDatabaseConnection("postgres://crpostgres:mypass@localhost:5432/moneyprocessing?sslmode=disable")
 	if err != nil || dbConn == nil {
 		fmt.Println(err)
 		fmt.Println("Cannot connect to posgreSQL database")
