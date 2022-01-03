@@ -7,7 +7,7 @@ import (
 	"github.com/crdev13/moneyprocessing/components/transactions/entity"
 	"github.com/crdev13/moneyprocessing/components/transactions/repository/dto/input"
 	"github.com/crdev13/moneyprocessing/components/transactions/repository/memory"
-	"github.com/crdev13/moneyprocessing/components/transactions/repository/posgres"
+	"github.com/crdev13/moneyprocessing/components/transactions/repository/postgres"
 )
 
 type TransactionsRepository interface {
@@ -31,5 +31,5 @@ func NewInPostgreSQLTransactionsRepository(dbConn *sql.DB) (TransactionsReposito
 	if dbConn == nil {
 		return nil, fmt.Errorf("Error, no database connection")
 	}
-	return &posgres.TransactionsRepository{DB: dbConn}, nil
+	return &postgres.TransactionsRepository{DB: dbConn}, nil
 }

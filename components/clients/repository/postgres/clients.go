@@ -1,4 +1,4 @@
-package posgres
+package postgres
 
 import (
 	"github.com/crdev13/moneyprocessing/components/clients/entity"

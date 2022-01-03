@@ -7,6 +7,7 @@ import (
 	"github.com/crdev13/moneyprocessing/components/clients/entity"
 	"github.com/crdev13/moneyprocessing/components/clients/repository/dto/input"
 	"github.com/crdev13/moneyprocessing/components/clients/repository/memory"
+	"github.com/crdev13/moneyprocessing/components/clients/repository/postgres"
 )
 
 type ClientsRepository interface {
@@ -31,5 +32,5 @@ func NewInPostgreSQLClientsRepository(dbConn *sql.DB) (ClientsRepository, error)
 	if dbConn == nil {
 		return nil, fmt.Errorf("Error, no database connection")
 	}
-	return &posgres.ClientsRepository{DB: dbConn}, nil
+	return &postgres.ClientsRepository{DB: dbConn}, nil
 }
