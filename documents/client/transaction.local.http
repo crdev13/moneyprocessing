@@ -1,0 +1,38 @@
+@domain = http://localhost:8080
+
+### Deposit
+POST {{domain}}/api/transactions/deposit HTTP/1.1
+content-type: application/json
+
+{
+    "account_id": 1,
+    "amount": 100
+}
+
+### Withdraw
+POST {{domain}}/api/transactions/withdraw HTTP/1.1
+content-type: application/json
+
+{
+    "account_id": 1,
+    "amount": 20
+}
+
+### Transfer
+POST {{domain}}/api/transactions/transfer HTTP/1.1
+content-type: application/json
+
+{
+    "sender_id": 1,
+    "receiver_id": 2,
+    "amount": 20
+}
+
+### Get account transactions
+GET {{domain}}/api/transactions/id/1
+
+### Get account transactions
+GET {{domain}}/api/transactions/id/2
+
+### Get account transactions
+GET {{domain}}/api/transactions/id/3

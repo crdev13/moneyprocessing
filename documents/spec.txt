@@ -1,0 +1,31 @@
+Money Processing Service
+The test is to implement a light version of a bank processing service.
+Just like a typical bank, it should have these entities:
+
+Clients of the bank who keep money there.
+Each Client can have multiple Accounts.
+Each Account balance can be denominated in one currency.
+For example Client1 can have three accounts: one USD account and two COP accounts.
+The following currencies should be supported: USD, COP, MXN.
+
+Transaction is an action to update an Account or Accounts balance.
+A transaction should belong to one of following types:
+● Deposit money
+● Withdraw money
+● Money transfer between Clients (Currency conversion is not needed. Only transfer
+between accounts with the same currency is allowed.)
+
+The following methods should be implemented:
+● Create Client
+● Create Account for Client
+● Get Client
+● Get Account
+● Get Transactions - return list of transactions for account
+● Create Transaction - create transaction of needed type
+
+API - JSON via REST
+Programming language - Golang
+Database - PostgreSQL
+
+Application should be packed to Docker image and uploaded to https://hub.docker.com/
+Link to source code should be provided (open repository on github, bitbucket, gitlab)

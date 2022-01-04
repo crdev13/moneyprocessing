@@ -1,0 +1,23 @@
+@domain = http://localhost:8080
+
+@domain = http://localhost:8080
+
+### Create account
+POST {{domain}}/api/accounts HTTP/1.1
+content-type: application/json
+
+{
+    "client_id": 1,
+    "account": {
+            "currency": "MXN"
+    }
+}
+
+### Get account
+GET {{domain}}/api/accounts/id/1
+
+### Get account
+GET {{domain}}/api/accounts/id/2
+
+### Get account
+GET {{domain}}/api/accounts/id/3
