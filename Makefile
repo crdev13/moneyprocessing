@@ -6,3 +6,5 @@ runlocalpostgresdb:
 	cd ./documents/database/local/ && bash up.sh
 stoplocalpostgresdb:
 	cd ./documents/database/local/ && bash down.sh
+deploylocally:
+	cd ./documents/docker/ && bash up.sh
