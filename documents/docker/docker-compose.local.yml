@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: moneyprocessing
+      POSTGRES_USER: crpostgres
+      POSTGRES_PASSWORD: mypass
+    ports:
+      - "5432:5432"
+
+  moneyprocessing:
+    image: crca13/moneyprocessing:latest
+    container_name: moneyprocessing
+    environment:
+      HOST: moneyprocessing.com
+      DBHOST: postgres
+      DBNAME: moneyprocessing
+      DBUSER: crpostgres
+      DBPASS: mypass
+    ports:
+      - "8080:8080"
+
+networks:
+  default:
+    external:
+      name: dev-net
