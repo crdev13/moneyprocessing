@@ -1,6 +1,10 @@
 package data
 
-import "github.com/crdev13/moneyprocessing/components/transactions/entity"
+import (
+	"database/sql"
+
+	"github.com/crdev13/moneyprocessing/components/transactions/entity"
+)
 
 type Transaction struct {
 	ID         uint32
@@ -25,4 +29,23 @@ func (data *Transaction) ConvertTransactionRowResultToEntity() *entity.Transacti
 	}
 
 	return transaction
+}
+
+func ScanTransactionFromDBRowsResult(
+	result *sql.Rows,
+) (*Transaction, *string) {
+	transaction := &Transaction{}
+	err := result.Scan(
+		&transaction.ID,
+		&transaction.SenderID,
+		&transaction.ReceiverID,
+		&transaction.Type,
+		&transaction.Amount,
+		&transaction.CreatedAt,
+	)
+	if err != nil {
+		message := "Error, cannot find transaction"
+		return nil, &message
+	}
+	return transaction, nil
 }

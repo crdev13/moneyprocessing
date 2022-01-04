@@ -49,15 +49,15 @@ func (data *transferMoney) validate() error {
 		return err
 	}
 
-	reciever, err := data.clientsRepository.FindAccountByID(data.request.RecieverID)
+	receiver, err := data.clientsRepository.FindAccountByID(data.request.ReceiverID)
 	if err != nil {
 		return err
 	}
-	if err := reciever.CanPerformAction(); err != nil {
+	if err := receiver.CanPerformAction(); err != nil {
 		return fmt.Errorf("Error, you cannot make a transfer for an account that doesn't exist")
 	}
 
-	if err := reciever.CanRecieveTransfer(sender); err != nil {
+	if err := receiver.CanRecieveTransfer(sender); err != nil {
 		return err
 	}
 	return nil

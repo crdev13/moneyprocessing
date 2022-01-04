@@ -11,12 +11,12 @@ func (repository *TransactionsRepository) DepositMoney(request *input.Deposit) e
 	txID := repository.TransactionsSequenceID
 	tx := &data.Transaction{
 		ID:         txID,
-		ReceiverID: request.Reciever,
+		ReceiverID: request.Receiver,
 		Type:       request.Type,
 		Amount:     request.Amount,
 	}
 	repository.Transactions[txID] = tx
-	account, ok := clientsrepository.Accounts[*request.Reciever]
+	account, ok := clientsrepository.Accounts[*request.Receiver]
 	if ok {
 		account.Amount += request.Amount
 	}

@@ -5,7 +5,7 @@ import (
 )
 
 type Deposit struct {
-	Reciever *uint32
+	Receiver *uint32
 	Type     string
 	Amount   float32
 }
@@ -14,7 +14,7 @@ func MakeDepositInputFromRequest(
 	request *inputrequest.DepositRequest,
 ) *Deposit {
 	deposit := &Deposit{
-		Reciever: &request.AccountID,
+		Receiver: &request.AccountID,
 		Type:     "DEPOSIT",
 		Amount:   request.Amount,
 	}

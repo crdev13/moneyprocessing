@@ -20,3 +20,6 @@ GET {{domain}}/api/clients/id/5
 
 ### Get client
 GET {{domain}}/api/clients/id/1
+
+### Get client
+GET {{domain}}/api/clients/id/2

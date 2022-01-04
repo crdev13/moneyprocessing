@@ -16,11 +16,11 @@ CREATE TABLE accounts(
 CREATE TABLE transactions(
     id serial NOT NULL,
     sender_account_id INT,
-    reciever_account_id INT,
+    receiver_account_id INT,
     type VARCHAR(255) NOT NULL,
     amount DECIMAL(9,2) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY(sender_account_id) REFERENCES accounts(id),
-    FOREIGN KEY(reciever_account_id) REFERENCES accounts(id),
+    FOREIGN KEY(receiver_account_id) REFERENCES accounts(id),
     PRIMARY KEY(id)
 );

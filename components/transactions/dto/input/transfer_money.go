@@ -8,7 +8,7 @@ import (
 
 type TransferRequest struct {
 	SenderID   uint32  `json:"sender_id"`
-	RecieverID uint32  `json:"reciever_id"`
+	ReceiverID uint32  `json:"receiver_id"`
 	Amount     float32 `json:"amount"`
 }
 
@@ -19,10 +19,10 @@ func (data *TransferRequest) Validate() error {
 	if data.SenderID == 0 {
 		return fmt.Errorf("Error, invalid account(sender) identification")
 	}
-	if data.RecieverID == 0 {
-		return fmt.Errorf("Error, invalid account(reciever) identification")
+	if data.ReceiverID == 0 {
+		return fmt.Errorf("Error, invalid account(receiver) identification")
 	}
-	if data.SenderID == data.RecieverID {
+	if data.SenderID == data.ReceiverID {
 		return fmt.Errorf("Error, invalid accounts, they cannot be the same")
 	}
 	if data.Amount == 0 {

@@ -12,7 +12,7 @@ func (repository *TransactionsRepository) TransferMoney(request *input.Transfer)
 	tx := &data.Transaction{
 		ID:         txID,
 		SenderID:   request.Sender,
-		ReceiverID: request.Reciever,
+		ReceiverID: request.Receiver,
 		Type:       request.Type,
 		Amount:     request.Amount,
 	}
@@ -22,7 +22,7 @@ func (repository *TransactionsRepository) TransferMoney(request *input.Transfer)
 	if ok {
 		account.Amount -= request.Amount
 	}
-	account, ok = clientsrepository.Accounts[*request.Reciever]
+	account, ok = clientsrepository.Accounts[*request.Receiver]
 	if ok {
 		account.Amount += request.Amount
 	}

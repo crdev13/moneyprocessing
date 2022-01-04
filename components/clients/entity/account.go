@@ -25,7 +25,7 @@ func (data *Account) CanPerformWithdraw(amount float32) error {
 
 func (data *Account) CanRecieveTransfer(sender *Account) error {
 	if data.Currency != sender.Currency {
-		return fmt.Errorf("Error, you cannot make a transger with acounts that have different currency")
+		return fmt.Errorf("Error, you cannot make a transfer with acounts that have different currency")
 	}
 	return nil
 }

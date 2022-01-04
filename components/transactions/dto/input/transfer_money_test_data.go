@@ -18,27 +18,27 @@ var TransferMoneyTestCases = []*TransferMoneyTestCase{
 		Name: "NotTransferWithInvalidSenderAccountIdentification",
 		Request: &TransferRequest{
 			SenderID:   0,
-			RecieverID: 2,
+			ReceiverID: 2,
 			Amount:     10,
 		},
 		NeedError: true,
 		MsgError:  "Error, invalid account(sender) identification",
 	},
 	{
-		Name: "NotTransferWithInvalidRecieverAccountIdentification",
+		Name: "NotTransferWithInvalidReceiverAccountIdentification",
 		Request: &TransferRequest{
 			SenderID:   1,
-			RecieverID: 0,
+			ReceiverID: 0,
 			Amount:     10,
 		},
 		NeedError: true,
-		MsgError:  "Error, invalid account(reciever) identification",
+		MsgError:  "Error, invalid account(receiver) identification",
 	},
 	{
 		Name: "NotTransferWithTheSameAccountIDs",
 		Request: &TransferRequest{
 			SenderID:   1,
-			RecieverID: 1,
+			ReceiverID: 1,
 			Amount:     10,
 		},
 		NeedError: true,
@@ -48,7 +48,7 @@ var TransferMoneyTestCases = []*TransferMoneyTestCase{
 		Name: "NotTransferWithInvalidAmount",
 		Request: &TransferRequest{
 			SenderID:   1,
-			RecieverID: 2,
+			ReceiverID: 2,
 			Amount:     0,
 		},
 		NeedError: true,
@@ -58,17 +58,17 @@ var TransferMoneyTestCases = []*TransferMoneyTestCase{
 		Name: "NotTransferWithInvalidSenderAccount",
 		Request: &TransferRequest{
 			SenderID:   99,
-			RecieverID: 2,
+			ReceiverID: 2,
 			Amount:     10,
 		},
 		NeedError: true,
 		MsgError:  "Error, you cannot make a transfer for an account that doesn't exist",
 	},
 	{
-		Name: "NotTransferWithInvalidRecieverAccount",
+		Name: "NotTransferWithInvalidReceiverAccount",
 		Request: &TransferRequest{
 			SenderID:   2,
-			RecieverID: 99,
+			ReceiverID: 99,
 			Amount:     10,
 		},
 		NeedError: true,
@@ -78,7 +78,7 @@ var TransferMoneyTestCases = []*TransferMoneyTestCase{
 		Name: "NotTransferWithNoFunds",
 		Request: &TransferRequest{
 			SenderID:   1,
-			RecieverID: 2,
+			ReceiverID: 2,
 			Amount:     1000,
 		},
 		NeedError: true,
@@ -88,7 +88,7 @@ var TransferMoneyTestCases = []*TransferMoneyTestCase{
 		Name: "NotTransferWithDifferentCurrency",
 		Request: &TransferRequest{
 			SenderID:   3,
-			RecieverID: 1,
+			ReceiverID: 1,
 			Amount:     10,
 		},
 		NeedError: true,
@@ -98,7 +98,7 @@ var TransferMoneyTestCases = []*TransferMoneyTestCase{
 		Name: "TransferMoney",
 		Request: &TransferRequest{
 			SenderID:   2,
-			RecieverID: 1,
+			ReceiverID: 1,
 			Amount:     10,
 		},
 		NeedError: false,

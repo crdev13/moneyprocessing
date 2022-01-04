@@ -4,7 +4,7 @@ import inputrequest "github.com/crdev13/moneyprocessing/components/transactions/
 
 type Transfer struct {
 	Sender   *uint32
-	Reciever *uint32
+	Receiver *uint32
 	Type     string
 	Amount   float32
 }
@@ -14,7 +14,7 @@ func MakeTransferInputFromRequest(
 ) *Transfer {
 	transfer := &Transfer{
 		Sender:   &request.SenderID,
-		Reciever: &request.RecieverID,
+		Receiver: &request.ReceiverID,
 		Type:     "TRANSFER",
 		Amount:   request.Amount,
 	}
