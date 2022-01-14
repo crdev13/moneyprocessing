@@ -18,6 +18,15 @@ content-type: application/json
     "amount": 20
 }
 
+### Withdraw
+POST {{domain}}/api/transactions/withdraw HTTP/1.1
+content-type: application/json
+
+{
+    "account_id": 2,
+    "amount": 20
+}
+
 ### Transfer
 POST {{domain}}/api/transactions/transfer HTTP/1.1
 content-type: application/json

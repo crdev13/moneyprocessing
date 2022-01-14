@@ -14,6 +14,12 @@ type ClientsRepository struct {
 func (repository *ClientsRepository) Close() {
 }
 
+func (repository *ClientsRepository) Lock() {
+}
+
+func (repository *ClientsRepository) Unlock() {
+}
+
 func (repository *ClientsRepository) InitSequenceID() {
 	var maxIdentificador uint32 = 0
 	for identificator := range repository.Clients {
