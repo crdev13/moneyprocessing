@@ -22,7 +22,7 @@ func MakeAccountOutputFromEntity(data *entity.Account, client *string) *Account 
 		ID:       data.ID,
 		Client:   client,
 		Currency: data.Currency,
-		Amount:   fmt.Sprintf("%0.2f \n", data.Amount),
+		Amount:   fmt.Sprintf("%0.2f", data.Amount),
 	}
 	return account
 }

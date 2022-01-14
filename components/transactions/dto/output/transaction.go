@@ -24,7 +24,7 @@ func MakeTransactionOutputFromEntity(data *entity.Transaction) *Transaction {
 		SenderID:   data.SenderID,
 		ReceiverID: data.ReceiverID,
 		Type:       data.Type,
-		Amount:     fmt.Sprintf("%0.2f \n", data.Amount),
+		Amount:     fmt.Sprintf("%0.2f", data.Amount),
 		CreatedAt:  data.CreatedAt,
 	}
 	return transaction
