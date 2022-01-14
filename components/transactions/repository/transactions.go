@@ -19,7 +19,7 @@ type TransactionsRepository interface {
 	GetTransactionsByAccount(accountID uint32) ([]*entity.Transaction, error)
 }
 
-func NewInMemoryTransactionsRepository() TransactionsRepository {
+func NewInMemoryTransactionsRepository() *memory.TransactionsRepository {
 	transactionsRepository := &memory.TransactionsRepository{
 		Transactions: memory.Transactions,
 	}
@@ -27,7 +27,7 @@ func NewInMemoryTransactionsRepository() TransactionsRepository {
 	return transactionsRepository
 }
 
-func NewInPostgreSQLTransactionsRepository(dbConn *sql.DB) (TransactionsRepository, error) {
+func NewInPostgreSQLTransactionsRepository(dbConn *sql.DB) (*postgres.TransactionsRepository, error) {
 	if dbConn == nil {
 		return nil, fmt.Errorf("Error, no database connection")
 	}
