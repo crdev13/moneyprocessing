@@ -7,6 +7,7 @@ import (
 	"github.com/crdev13/moneyprocessing/components/clients/entity"
 	"github.com/crdev13/moneyprocessing/components/clients/repository/data"
 	"github.com/crdev13/moneyprocessing/components/clients/repository/dto/input"
+	"github.com/shopspring/decimal"
 )
 
 func (repository *ClientsRepository) CreateAccount(request *input.CreateAccount) error {
@@ -97,7 +98,7 @@ func saveAccountTx(
 func DepositTx(
 	transaction *sql.Tx,
 	accountID *uint32,
-	amount float32,
+	amount decimal.Decimal,
 ) error {
 	query := `
 	UPDATE accounts SET amount = amount + $1 
@@ -115,7 +116,7 @@ func DepositTx(
 func WithdrawTx(
 	transaction *sql.Tx,
 	accountID *uint32,
-	amount float32,
+	amount decimal.Decimal,
 ) error {
 	query := `
 	UPDATE accounts SET amount = amount - $1 
@@ -134,7 +135,7 @@ func TransferTx(
 	transaction *sql.Tx,
 	senderID *uint32,
 	receiverID *uint32,
-	amount float32,
+	amount decimal.Decimal,
 ) error {
 	if err := WithdrawTx(transaction, senderID, amount); err != nil {
 		return fmt.Errorf("Error, cannot transfer money account(%v)", *senderID)

@@ -18,8 +18,8 @@ func (data *WithdrawRequest) Validate() error {
 	if data.AccountID == 0 {
 		return fmt.Errorf("Error, invalid account identification")
 	}
-	if data.Amount == 0 {
-		return fmt.Errorf("Error, invalid amount")
+	if err := validateCurrency(data.Amount); err != nil {
+		return err
 	}
 	return nil
 }

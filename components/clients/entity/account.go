@@ -1,12 +1,16 @@
 package entity
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/shopspring/decimal"
+)
 
 type Account struct {
 	ID       uint32
 	ClientID uint32
 	Currency string
-	Amount   float32
+	Amount   decimal.Decimal
 }
 
 func (data *Account) CanPerformAction() error {
@@ -17,7 +21,7 @@ func (data *Account) CanPerformAction() error {
 }
 
 func (data *Account) CanPerformWithdraw(amount float32) error {
-	if amount > data.Amount {
+	if data.Amount.LessThan(decimal.NewFromFloat32(amount)) {
 		return fmt.Errorf("Error, account has insufficient funds")
 	}
 	return nil

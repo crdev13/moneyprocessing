@@ -1,13 +1,15 @@
 package output
 
-import "github.com/crdev13/moneyprocessing/components/transactions/entity"
+import (
+	"github.com/crdev13/moneyprocessing/components/transactions/entity"
+)
 
 type Transaction struct {
 	ID         uint32  `json:"transaction_id"`
 	SenderID   *uint32 `json:"sender_account_id,omitempty"`
 	ReceiverID *uint32 `json:"receiver_account_id,omitempty"`
 	Type       string  `json:"type"`
-	Amount     float32 `json:"amount"`
+	Amount     string  `json:"amount"`
 	CreatedAt  string  `json:"created_at"`
 }
 
@@ -20,7 +22,7 @@ func MakeTransactionOutputFromEntity(data *entity.Transaction) *Transaction {
 		SenderID:   data.SenderID,
 		ReceiverID: data.ReceiverID,
 		Type:       data.Type,
-		Amount:     data.Amount,
+		Amount:     data.Amount.StringFixed(2),
 		CreatedAt:  data.CreatedAt,
 	}
 	return transaction
