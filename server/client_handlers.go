@@ -25,7 +25,7 @@ func extractClientIDFromRequest(r *http.Request) (uint32, error) {
 func (app *App) createClient(w http.ResponseWriter, r *http.Request) {
 	request, err := input.MakeCreateClientRequest(r)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, err.Error())
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	task, err := clients.NewCreateClient(
@@ -47,7 +47,7 @@ func (app *App) createClient(w http.ResponseWriter, r *http.Request) {
 func (app *App) getClient(w http.ResponseWriter, r *http.Request) {
 	clientID, err := extractClientIDFromRequest(r)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, err.Error())
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	task, err := clients.NewGetClientByID(app.clientsRepository, clientID)

@@ -25,7 +25,7 @@ func extractAccountIDFromRequest(r *http.Request) (uint32, error) {
 func (app *App) createAccount(w http.ResponseWriter, r *http.Request) {
 	request, err := input.MakeCreateAccountRequest(r)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, err.Error())
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	task, err := clients.NewCreateAccount(
@@ -47,7 +47,7 @@ func (app *App) createAccount(w http.ResponseWriter, r *http.Request) {
 func (app *App) getAccount(w http.ResponseWriter, r *http.Request) {
 	accountID, err := extractAccountIDFromRequest(r)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, err.Error())
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	task, err := clients.NewGetAccountByID(app.clientsRepository, accountID)

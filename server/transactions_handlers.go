@@ -10,7 +10,7 @@ import (
 func (app *App) getTransactions(w http.ResponseWriter, r *http.Request) {
 	accountID, err := extractAccountIDFromRequest(r)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, err.Error())
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	task, err := transactions.NewGetTransactionsByAccount(
@@ -33,7 +33,7 @@ func (app *App) getTransactions(w http.ResponseWriter, r *http.Request) {
 func (app *App) deposit(w http.ResponseWriter, r *http.Request) {
 	request, err := input.MakeDepositRequest(r)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, err.Error())
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	task, err := transactions.NewDepositMoney(
@@ -56,7 +56,7 @@ func (app *App) deposit(w http.ResponseWriter, r *http.Request) {
 func (app *App) withdraw(w http.ResponseWriter, r *http.Request) {
 	request, err := input.MakeWithdrawRequest(r)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, err.Error())
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	task, err := transactions.NewWithdrawMoney(
@@ -79,7 +79,7 @@ func (app *App) withdraw(w http.ResponseWriter, r *http.Request) {
 func (app *App) transfer(w http.ResponseWriter, r *http.Request) {
 	request, err := input.MakeTransferRequest(r)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, err.Error())
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	task, err := transactions.NewTransferMoney(
