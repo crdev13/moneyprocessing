@@ -4,6 +4,7 @@ import (
 	"database/sql"
 
 	"github.com/crdev13/moneyprocessing/components/transactions/entity"
+	"github.com/shopspring/decimal"
 )
 
 type Transaction struct {
@@ -11,7 +12,7 @@ type Transaction struct {
 	SenderID   *uint32
 	ReceiverID *uint32
 	Type       string
-	Amount     float32
+	Amount     decimal.Decimal
 	CreatedAt  string
 }
 

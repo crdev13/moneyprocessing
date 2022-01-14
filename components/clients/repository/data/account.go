@@ -4,13 +4,14 @@ import (
 	"database/sql"
 
 	"github.com/crdev13/moneyprocessing/components/clients/entity"
+	"github.com/shopspring/decimal"
 )
 
 type Account struct {
 	ID       uint32
 	ClientID uint32
 	Currency string
-	Amount   float32
+	Amount   decimal.Decimal
 }
 
 func (data *Account) ConvertAccountRowResultToEntity() *entity.Account {

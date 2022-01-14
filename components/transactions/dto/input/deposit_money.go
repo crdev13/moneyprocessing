@@ -18,7 +18,15 @@ func (data *DepositRequest) Validate() error {
 	if data.AccountID == 0 {
 		return fmt.Errorf("Error, invalid account identification")
 	}
-	if data.Amount == 0 {
+	if err := validateCurrency(data.Amount); err != nil {
+		return err
+	}
+	return nil
+}
+
+func validateCurrency(amount float32) error {
+	amountStr := fmt.Sprintf("%v", amount)
+	if !CurrencyRegex.MatchString(amountStr) {
 		return fmt.Errorf("Error, invalid amount")
 	}
 	return nil

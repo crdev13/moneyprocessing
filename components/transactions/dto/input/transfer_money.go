@@ -25,8 +25,8 @@ func (data *TransferRequest) Validate() error {
 	if data.SenderID == data.ReceiverID {
 		return fmt.Errorf("Error, invalid accounts, they cannot be the same")
 	}
-	if data.Amount == 0 {
-		return fmt.Errorf("Error, invalid amount")
+	if err := validateCurrency(data.Amount); err != nil {
+		return err
 	}
 	return nil
 }

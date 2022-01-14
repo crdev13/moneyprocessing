@@ -8,6 +8,7 @@ import (
 	"github.com/crdev13/moneyprocessing/components/transactions/entity"
 	"github.com/crdev13/moneyprocessing/components/transactions/repository/data"
 	"github.com/crdev13/moneyprocessing/components/transactions/repository/dto/input"
+	"github.com/shopspring/decimal"
 )
 
 func (repository *TransactionsRepository) DepositMoney(request *input.Deposit) error {
@@ -39,17 +40,18 @@ func (repository *TransactionsRepository) WithdrawMoney(request *input.Withdraw)
 	if err != nil {
 		return fmt.Errorf("Error, withdraw transaction cannot be started")
 	}
+	amount := decimal.NewFromFloat32(request.Amount)
 	if _, err := createTransaction(
 		transaction,
 		request.Sender,
 		nil,
 		request.Type,
-		request.Amount,
+		amount,
 	); err != nil {
 		_ = transaction.Rollback()
 		return err
 	}
-	if err := accountrepository.WithdrawTx(transaction, request.Sender, request.Amount); err != nil {
+	if err := accountrepository.WithdrawTx(transaction, request.Sender, amount); err != nil {
 		_ = transaction.Rollback()
 		return err
 	}
@@ -63,17 +65,18 @@ func (repository *TransactionsRepository) TransferMoney(request *input.Transfer)
 	if err != nil {
 		return fmt.Errorf("Error, transfer transaction cannot be started")
 	}
+	amount := decimal.NewFromFloat32(request.Amount)
 	if _, err := createTransaction(
 		transaction,
 		request.Sender,
 		request.Receiver,
 		request.Type,
-		request.Amount,
+		amount,
 	); err != nil {
 		_ = transaction.Rollback()
 		return err
 	}
-	if err := accountrepository.TransferTx(transaction, request.Sender, request.Receiver, request.Amount); err != nil {
+	if err := accountrepository.TransferTx(transaction, request.Sender, request.Receiver, amount); err != nil {
 		_ = transaction.Rollback()
 		return err
 	}
@@ -112,7 +115,7 @@ func createTransaction(
 	sender *uint32,
 	receiver *uint32,
 	typeOfTx string,
-	amount float32,
+	amount decimal.Decimal,
 ) (uint32, error) {
 	query := `
     INSERT INTO transactions (sender_account_id, receiver_account_id, type, amount)

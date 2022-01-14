@@ -18,7 +18,7 @@ func (repository *TransactionsRepository) DepositMoney(request *input.Deposit) e
 	repository.Transactions[txID] = tx
 	account, ok := clientsrepository.Accounts[*request.Receiver]
 	if ok {
-		account.Amount += request.Amount
+		account.Amount = account.Amount.Add(request.Amount)
 	}
 	return nil
 }

@@ -52,6 +52,8 @@ func (data *withdrawMoney) validate() error {
 }
 
 func (data *withdrawMoney) Execute() error {
+	data.clientsRepository.Lock()
+	defer data.clientsRepository.Unlock()
 	if err := data.validate(); err != nil {
 		return err
 	}

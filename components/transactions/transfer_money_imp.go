@@ -64,6 +64,8 @@ func (data *transferMoney) validate() error {
 }
 
 func (data *transferMoney) Execute() error {
+	data.clientsRepository.Lock()
+	defer data.clientsRepository.Unlock()
 	if err := data.validate(); err != nil {
 		return err
 	}
