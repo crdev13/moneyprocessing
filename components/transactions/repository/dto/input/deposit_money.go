@@ -2,12 +2,13 @@ package input
 
 import (
 	inputrequest "github.com/crdev13/moneyprocessing/components/transactions/dto/input"
+	"github.com/shopspring/decimal"
 )
 
 type Deposit struct {
 	Receiver *uint32
 	Type     string
-	Amount   float32
+	Amount   decimal.Decimal
 }
 
 func MakeDepositInputFromRequest(
@@ -16,7 +17,7 @@ func MakeDepositInputFromRequest(
 	deposit := &Deposit{
 		Receiver: &request.AccountID,
 		Type:     "DEPOSIT",
-		Amount:   request.Amount,
+		Amount:   decimal.NewFromFloat32(request.Amount),
 	}
 	return deposit
 }

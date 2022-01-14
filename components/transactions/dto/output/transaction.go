@@ -1,8 +1,6 @@
 package output
 
 import (
-	"fmt"
-
 	"github.com/crdev13/moneyprocessing/components/transactions/entity"
 )
 
@@ -24,7 +22,7 @@ func MakeTransactionOutputFromEntity(data *entity.Transaction) *Transaction {
 		SenderID:   data.SenderID,
 		ReceiverID: data.ReceiverID,
 		Type:       data.Type,
-		Amount:     fmt.Sprintf("%0.2f", data.Amount),
+		Amount:     data.Amount.StringFixed(2),
 		CreatedAt:  data.CreatedAt,
 	}
 	return transaction

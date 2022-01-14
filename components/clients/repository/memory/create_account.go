@@ -5,6 +5,7 @@ import (
 
 	"github.com/crdev13/moneyprocessing/components/clients/repository/data"
 	"github.com/crdev13/moneyprocessing/components/clients/repository/dto/input"
+	"github.com/shopspring/decimal"
 )
 
 func (repository *ClientsRepository) CreateAccount(request *input.CreateAccount) error {
@@ -14,7 +15,7 @@ func (repository *ClientsRepository) CreateAccount(request *input.CreateAccount)
 		ID:       accID,
 		ClientID: request.ClientID,
 		Currency: request.Currency,
-		Amount:   0,
+		Amount:   decimal.NewFromInt(0),
 	}
 	client, ok := repository.Clients[request.ClientID]
 	if !ok {
