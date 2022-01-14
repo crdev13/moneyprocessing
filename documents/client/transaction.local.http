@@ -9,13 +9,22 @@ content-type: application/json
     "amount": 100
 }
 
+### Deposit
+POST {{domain}}/api/transactions/deposit HTTP/1.1
+content-type: application/json
+
+{
+    "account_id": 1,
+    "amount": 100.09
+}
+
 ### Withdraw
 POST {{domain}}/api/transactions/withdraw HTTP/1.1
 content-type: application/json
 
 {
     "account_id": 1,
-    "amount": 20
+    "amount": 20.30
 }
 
 ### Withdraw
