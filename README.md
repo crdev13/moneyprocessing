@@ -72,5 +72,9 @@ Image Repository [Check details](https://hub.docker.com/r/crca13/moneyprocessing
 
 2. Run [up.sh](./documents/docker/up.sh)
 ```
+## Start app using Makefile
 $ make deploylocally
+
+## Stop app using Makefile
+$ make stoplocaldeployment
 ```
